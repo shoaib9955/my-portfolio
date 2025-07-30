@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logo from "../assets/Shoaib-logo.png";
+import logo from "../assets/shoaib-logo.png";
 import { FiMenu, FiX } from "react-icons/fi";
 
 function Header() {
