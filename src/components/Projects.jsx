@@ -5,34 +5,53 @@ function Projects() {
   return (
     <section
       id="projects"
-      className="px-6 py-16 bg-gradient-to-br from-white via-purple-50 to-white text-gray-800"
+      className="px-6 py-16 bg-gradient-to-br from-purple-50 via-pink-50 to-white text-gray-800 relative overflow-hidden"
       data-aos="fade-up"
     >
-      <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-purple-700">
+      {/* Subtle Floating Particles */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(15)].map((_, i) => (
+          <div
+            key={i}
+            className="w-1.5 h-1.5 bg-yellow-300 rounded-full absolute animate-pulse-slow"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animationDuration: `${3 + Math.random() * 3}s`,
+              opacity: Math.random() * 0.5 + 0.3,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="max-w-6xl mx-auto relative z-10 text-center">
+        <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-purple-700">
           Projects
         </h2>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-2">
           {projects.map((project, index) => (
             <div
               key={index}
-              className="backdrop-blur-lg bg-white/40 p-6 rounded-xl shadow-lg border border-white/20 hover:shadow-2xl transition duration-300"
+              className="backdrop-blur-xl bg-white/30 p-6 rounded-2xl shadow-lg border border-white/20 hover:shadow-2xl hover:scale-105 transform transition duration-500 ease-in-out group relative overflow-hidden"
               data-aos="zoom-in"
               data-aos-delay={100 * (index + 1)}
             >
-              <h3 className="text-xl font-semibold mb-2 text-purple-800">
+              {/* Gradient Overlay on Hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-300 to-yellow-300 opacity-0 group-hover:opacity-20 rounded-2xl transition-opacity duration-500"></div>
+
+              <h3 className="text-xl font-semibold mb-3 text-purple-800 z-10 relative">
                 {project.title}
               </h3>
-              <p className="mb-4">{project.description}</p>
+              <p className="mb-5 z-10 relative">{project.description}</p>
 
-              <div className="flex flex-col sm:flex-row gap-3 justify-center sm:justify-start">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center sm:justify-start z-10 relative">
                 {project.demo && (
                   <a
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition"
+                    className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-5 py-2 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl transition transform duration-300 font-semibold"
                   >
                     Live Demo
                   </a>
@@ -49,7 +68,7 @@ function Projects() {
                   <a
                     href={project.apk}
                     download
-                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
+                    className="bg-gradient-to-r from-green-500 to-green-400 text-white px-5 py-2 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl transition transform duration-300"
                   >
                     Download APK
                   </a>
@@ -59,7 +78,7 @@ function Projects() {
           ))}
         </div>
 
-        {/* 🔗 GitHub Profile Link */}
+        {/* GitHub Profile Link */}
         <div
           className="mt-16 text-center"
           data-aos="fade-up"
@@ -78,6 +97,18 @@ function Projects() {
           </a>
         </div>
       </div>
+
+      <style>
+        {`
+          @keyframes pulse-slow {
+            0%, 100% { transform: scale(0.5); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 1; }
+          }
+          .animate-pulse-slow {
+            animation: pulse-slow infinite ease-in-out;
+          }
+        `}
+      </style>
     </section>
   );
 }

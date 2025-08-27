@@ -67,12 +67,17 @@ function Skills() {
                 {category.skills.map((skill, index) => (
                   <div
                     key={index}
-                    className="flex flex-col items-center justify-center gap-2 p-6 rounded-xl shadow-xl border border-white/30 bg-white/40 backdrop-blur-lg hover:scale-105 hover:shadow-2xl transition-transform duration-300 ease-in-out"
+                    className="flex flex-col items-center justify-center gap-2 p-6 rounded-xl shadow-xl border border-white/30 bg-white/40 backdrop-blur-lg 
+                    transform transition duration-500 ease-in-out hover:scale-110 hover:rotate-3 hover:shadow-2xl hover:shadow-purple-300/40"
                     data-aos="zoom-in"
                     data-aos-delay={index * 100}
                     aria-label={skill.name}
                   >
-                    <div className="text-4xl">{skill.icon}</div>
+                    <div className="text-4xl relative">
+                      {/* Glow behind icon */}
+                      <div className="absolute inset-0 rounded-full blur-xl bg-purple-300 opacity-20 scale-90 transition-all duration-500 group-hover:scale-110"></div>
+                      <div className="relative z-10">{skill.icon}</div>
+                    </div>
                     <p className="text-md font-semibold">{skill.name}</p>
                   </div>
                 ))}
