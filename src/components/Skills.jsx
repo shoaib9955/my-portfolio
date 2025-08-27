@@ -9,16 +9,19 @@ import {
   FaNodeJs,
   FaPython,
 } from "react-icons/fa";
-import { SiTailwindcss, SiFirebase } from "react-icons/si"; // ✅ Correct icon for VS Code
+import { SiTailwindcss, SiFirebase } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
+
 function Skills() {
   const categories = [
     {
       title: "Languages",
       skills: [
-        { name: "HTML", icon: <FaHtml5 className="text-orange-600" /> },
-        { name: "CSS", icon: <FaCss3Alt className="text-blue-600" /> },
+        { name: "HTML", icon: <FaHtml5 className="text-orange-500" /> },
+        { name: "CSS", icon: <FaCss3Alt className="text-blue-500" /> },
         { name: "JavaScript", icon: <FaJs className="text-yellow-400" /> },
+        { name: "Node.js", icon: <FaNodeJs className="text-green-600" /> },
+        { name: "Python", icon: <FaPython className="text-yellow-600" /> },
       ],
     },
     {
@@ -39,13 +42,6 @@ function Skills() {
           name: "Android Studio",
           icon: <FaAndroid className="text-green-600" />,
         },
-      ],
-    },
-    {
-      title: "Still Learning",
-      skills: [
-        { name: "Node.js", icon: <FaNodeJs className="text-green-600" /> },
-        { name: "Python", icon: <FaPython className="text-yellow-600" /> },
       ],
     },
   ];
@@ -71,9 +67,10 @@ function Skills() {
                 {category.skills.map((skill, index) => (
                   <div
                     key={index}
-                    className="flex flex-col items-center justify-center gap-2 p-6 rounded-xl shadow-xl border border-white/30 bg-white/40 backdrop-blur-lg hover:scale-105 hover:shadow-2xl transition-all duration-300 ease-in-out"
+                    className="flex flex-col items-center justify-center gap-2 p-6 rounded-xl shadow-xl border border-white/30 bg-white/40 backdrop-blur-lg hover:scale-105 hover:shadow-2xl transition-transform duration-300 ease-in-out"
                     data-aos="zoom-in"
                     data-aos-delay={index * 100}
+                    aria-label={skill.name}
                   >
                     <div className="text-4xl">{skill.icon}</div>
                     <p className="text-md font-semibold">{skill.name}</p>

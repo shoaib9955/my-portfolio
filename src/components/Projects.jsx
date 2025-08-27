@@ -45,6 +45,15 @@ function Projects() {
                 >
                   <FaGithub size={18} /> GitHub →
                 </a>
+                {project.apk && (
+                  <a
+                    href={project.apk}
+                    download
+                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
+                  >
+                    Download APK
+                  </a>
+                )}
               </div>
             </div>
           ))}

@@ -4,7 +4,8 @@ function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-12"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 
+      to-purple-600 text-white px-6 py-12"
     >
       <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         {/* Left: Text */}
@@ -34,8 +35,10 @@ function Hero() {
             data-aos="fade-right"
             data-aos-delay="300"
           >
-            I build fast, accessible, and beautiful user interfaces using modern
-            web technologies like React, Tailwind, and GSAP.
+            I craft fast, accessible, and visually striking web interfaces using
+            React and Tailwind CSS. I focus on clean, responsive designs that
+            deliver seamless experiences across all devices, blending
+            performance, usability, and style to bring ideas to life.
           </p>
 
           <a
