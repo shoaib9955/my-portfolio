@@ -6,16 +6,14 @@ const projects = [
     github: "https://github.com/shoaib9955/Pha5e.git",
     demo: "https://pha5e-nine.vercel.app",
   },
-
   {
     title: "EcoShield App",
     description:
       "A safety and environmental awareness app with advanced real-time protection features. Users can trigger emergency calls and SMS alerts (with live location) by speaking a keyword like 'help' — even when the phone is locked. The app includes an interactive crime heatmap divided into three zones (red, yellow, green), providing clear risk indicators. A built-in voice assistant warns users when entering high-risk areas and automatically sends safety alerts to saved contacts. Powered by Firebase for backend integration and location services.",
     github: "https://github.com/shoaib9955/safetyapp.git",
     demo: null,
-    apk: "https://github.com/shoaib9955/safetyapp/releases/latest/download/app-release.apk",
+    apk: "https://github.com/shoaib9955/safetyapp/releases/download/v1.1)/app-arm64-v8a-release.apk",
   },
-
   {
     title: "eCommerce web",
     description:
