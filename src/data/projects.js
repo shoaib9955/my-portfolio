@@ -26,8 +26,15 @@ const projects = [
     description:
       "A community-driven donation app built as a 2nd-year project, designed to connect donors with NGOs and people in need. Donors can easily make contributions and track their donation history, while NGOs have a dedicated page to view and manage received donations. The app streamlines the donation process, enhances transparency, and encourages social responsibility. Built with Firebase integration for secure data management.",
     github: "https://github.com/shoaib9955/SHARE4CARE.git",
-    demo: null, // optional live preview
+    demo: null,
     apk: "https://github.com/shoaib9955/SHARE4CARE/releases/download/share4care/app-release.apk",
+  },
+  {
+    title: "PowerFitness Gym Management",
+    description:
+      "A complete MEAN stack gym management system with full admin authentication and user management. The app allows admins to manage members, track subscriptions, handle payments, and monitor gym activities efficiently. Built for gyms to streamline operations and enhance member experience.",
+    github: " https://github.com/shoaib9955/Powerfitnessfrontend.git",
+    demo: "https://powerfitness13.onrender.com",
   },
 ];
 
