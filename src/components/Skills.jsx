@@ -1,87 +1,128 @@
+import { motion } from "framer-motion";
 import {
   FaHtml5,
   FaCss3Alt,
-  FaJs,
+  FaJsSquare,
   FaReact,
-  FaGithub,
-  FaFigma,
-  FaAndroid,
   FaNodeJs,
-  FaPython,
+  FaGithub,
+  FaDatabase,
+  FaMobileAlt,
+  FaFigma,
 } from "react-icons/fa";
-import { SiTailwindcss, SiFirebase } from "react-icons/si";
-import { VscVscode } from "react-icons/vsc";
+import { SiTailwindcss, SiExpress, SiMongodb, SiTypescript } from "react-icons/si";
 
 function Skills() {
   const categories = [
     {
-      title: "Languages",
+      title: "Frontend Mastery",
       skills: [
-        { name: "HTML", icon: <FaHtml5 className="text-orange-500" /> },
-        { name: "CSS", icon: <FaCss3Alt className="text-blue-500" /> },
-        { name: "JavaScript", icon: <FaJs className="text-yellow-400" /> },
-        { name: "Node.js", icon: <FaNodeJs className="text-green-600" /> },
-        { name: "Python", icon: <FaPython className="text-yellow-600" /> },
+        { name: "React", icon: <FaReact /> },
+        { name: "JavaScript", icon: <FaJsSquare /> },
+        { name: "TypeScript", icon: <SiTypescript /> },
+        { name: "Tailwind CSS", icon: <SiTailwindcss /> },
+        { name: "HTML5", icon: <FaHtml5 /> },
+        { name: "CSS3", icon: <FaCss3Alt /> },
       ],
     },
     {
-      title: "Frameworks & Libraries",
+      title: "Backend & Systems",
       skills: [
-        { name: "React", icon: <FaReact className="text-cyan-400" /> },
-        { name: "Tailwind", icon: <SiTailwindcss className="text-sky-400" /> },
-        { name: "Firebase", icon: <SiFirebase className="text-yellow-500" /> },
-      ],
-    },
-    {
-      title: "Tools",
-      skills: [
-        { name: "VS Code", icon: <VscVscode className="text-blue-600" /> },
-        { name: "GitHub", icon: <FaGithub className="text-gray-800" /> },
-        { name: "Figma", icon: <FaFigma className="text-purple-500" /> },
-        {
-          name: "Android Studio",
-          icon: <FaAndroid className="text-green-600" />,
-        },
+        { name: "Node.js", icon: <FaNodeJs /> },
+        { name: "Express", icon: <SiExpress /> },
+        { name: "MongoDB", icon: <SiMongodb /> },
+        { name: "PostgreSQL", icon: <FaDatabase /> },
+        { name: "REST APIs", icon: <FaDatabase /> },
+        { name: "Git", icon: <FaGithub /> },
       ],
     },
   ];
 
-  return (
-    <section
-      id="skills"
-      className="px-6 py-16 bg-gradient-to-br from-white via-purple-50 to-white text-gray-800"
-      data-aos="fade-up"
-    >
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-purple-700">
-          My Skills
-        </h2>
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
 
-        <div className="space-y-16">
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  return (
+    <section id="skills" className="bg-primary-900 py-32">
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mb-20 text-center lg:text-left"
+        >
+          <motion.h2 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl font-bold tracking-tighter text-[var(--text-primary)] mb-4"
+          >
+            Technical Arsenal<span className="text-blue-500"></span>
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-[var(--text-secondary)] max-w-lg mx-auto lg:mx-0"
+          >
+            A specialized collection of tools and technologies I use to bring
+            complex ideas to life.
+          </motion.p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
           {categories.map((category, i) => (
-            <div key={i} data-aos="fade-up" data-aos-delay={i * 150}>
-              <h3 className="text-2xl font-semibold text-purple-600 mb-6 text-center md:text-left">
+            <div key={i}>
+              <motion.h3 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: i * 0.2 }}
+                className="text-sm font-mono text-blue-500 tracking-[0.3em] uppercase mb-10 text-center lg:text-left"
+              >
                 {category.title}
-              </h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+              </motion.h3>
+              <motion.div 
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="grid grid-cols-2 md:grid-cols-3 gap-4"
+              >
                 {category.skills.map((skill, index) => (
-                  <div
+                  <motion.div
                     key={index}
-                    className="flex flex-col items-center justify-center gap-2 p-6 rounded-xl shadow-xl border border-white/30 bg-white/40 backdrop-blur-lg 
-                    transform transition duration-500 ease-in-out hover:scale-110 hover:rotate-3 hover:shadow-2xl hover:shadow-purple-300/40"
-                    data-aos="zoom-in"
-                    data-aos-delay={index * 100}
-                    aria-label={skill.name}
+                    variants={itemVariants}
+                    whileHover={{ y: -5, scale: 1.05 }}
+                    className="flex flex-col items-center justify-center p-8 rounded-2xl bg-primary-800 border border-[var(--border-primary)] hover:border-blue-500/30 transition-all duration-300 group shadow-lg shadow-black/5"
                   >
-                    <div className="text-4xl relative">
-                      {/* Glow behind icon */}
-                      <div className="absolute inset-0 rounded-full blur-xl bg-purple-300 opacity-20 scale-90 transition-all duration-500 group-hover:scale-110"></div>
-                      <div className="relative z-10">{skill.icon}</div>
+                    <div className="text-4xl text-[var(--text-secondary)] group-hover:text-blue-500 transition-colors duration-300 mb-4">
+                      {skill.icon}
                     </div>
-                    <p className="text-md font-semibold">{skill.name}</p>
-                  </div>
+                    <span className="text-xs font-medium tracking-wider text-[var(--text-secondary)] uppercase group-hover:text-blue-500 transition-colors duration-300 text-center">
+                      {skill.name}
+                    </span>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
           ))}
         </div>

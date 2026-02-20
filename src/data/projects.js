@@ -32,10 +32,10 @@ const projects = [
   {
     title: "PowerFitness Gym Management",
     description:
-      "A complete MEAN stack gym management system with full admin authentication and user management. The app allows admins to manage members, track subscriptions, handle payments, and monitor gym activities efficiently. Built for gyms to streamline operations and enhance member experience.",
+      "A complete MERN stack gym management system with full admin authentication and user management. The app allows admins to manage members, track subscriptions, handle payments, and monitor gym activities efficiently. Built for gyms to streamline operations and enhance member experience.",
     github: " https://github.com/shoaib9955/Powerfitnessfrontend.git",
     demo: "https://powerfitness13.onrender.com",
   },
 ];
 
-export default projects;
+export { projects };

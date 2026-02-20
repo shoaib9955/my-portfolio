@@ -1,80 +1,160 @@
-// src/components/Loading.jsx
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import logo from "../assets/Shoaib-logo.png";
 
 function Loading({ onFinish }) {
-  useEffect(() => {
-    const timer = setTimeout(() => onFinish(), 3500);
-    return () => clearTimeout(timer);
-  }, [onFinish]);
+  const [progress, setProgress] = useState(0);
+  const [isExitStarted, setIsExitStarted] = useState(false);
 
-  const stars = [...Array(40)]; // 40 stars
+  useEffect(() => {
+    const duration = 2500; 
+    const interval = 20;
+    const step = 100 / (duration / interval);
+
+    const timer = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(timer);
+          setTimeout(() => {
+            setIsExitStarted(true);
+            setTimeout(onFinish, 1000); 
+          }, 400); 
+          return 100;
+        }
+        return prev + step;
+      });
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, [onFinish]);
 
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 flex flex-col items-center justify-center z-[9999] overflow-hidden bg-gradient-to-br from-gray-900 via-indigo-900 to-black"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        className="fixed inset-0 flex items-center justify-center z-[9999] bg-primary-900 overflow-hidden"
+        initial={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.5 }}
       >
-        {/* Elegant Neon Text */}
-        <motion.h1
-          className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-center tracking-wide leading-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-indigo-500 drop-shadow-[0_0_10px] "
-          initial={{ scale: 0.9 }}
-          animate={{ scale: [0.9, 1.05, 1] }}
-          transition={{ duration: 2, repeat: Infinity, repeatType: "loop" }}
-        >
-          Welcome to Shoaib's Portfolio
-        </motion.h1>
-
-        {/* Subheading */}
-        <motion.p
-          className="mt-6 text-gray-200/90 text-lg sm:text-xl md:text-2xl text-center tracking-wide drop-shadow-lg"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1.5, delay: 0.5 }}
-        >
-          Showcasing Innovative Web & Mobile Applications
-        </motion.p>
-
-        {/* Falling Stars with Glow Trail */}
-        {stars.map((_, i) => (
+        {/* Animated Background Mesh */}
+        <div className="absolute inset-0 z-0 opacity-30">
           <motion.div
-            key={i}
-            className="absolute w-2 h-2 rounded-full bg-white shadow-[0_0_10px_white] opacity-80"
-            style={{ left: `${Math.random() * 100}%` }}
-            initial={{ y: -10, rotate: 0, opacity: 0 }}
+            className="absolute top-[-20%] left-[-20%] w-[60%] h-[60%] bg-blue-600 rounded-full blur-[140px]"
             animate={{
-              y: [0, 900],
-              rotate: [0, 360],
-              opacity: [0, 1, 0],
-              boxShadow: ["0 0 2px #fff", "0 0 15px #00fff5", "0 0 2px #fff"],
+              x: [0, 100, 0],
+              y: [0, 50, 0],
+              scale: [1, 1.2, 1],
             }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              delay: Math.random() * 3,
-              repeat: Infinity,
-              ease: "linear",
-            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
           />
-        ))}
+          <motion.div
+            className="absolute bottom-[-20%] right-[-20%] w-[60%] h-[60%] bg-purple-600 rounded-full blur-[140px]"
+            animate={{
+              x: [0, -100, 0],
+              y: [0, -50, 0],
+              scale: [1.2, 1, 1.2],
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          />
+        </div>
 
-        {/* Pulsating Glowing Orb */}
-        <motion.div
-          className="absolute w-44 h-44 bg-cyan-400 rounded-full filter blur-3xl opacity-20"
-          animate={{
-            scale: [1, 1.6, 1],
-            opacity: [0.2, 0.6, 0.2],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
+        {/* Iris Exit Transition Elements */}
+        {isExitStarted && (
+          <div className="absolute inset-0 z-[100] pointer-events-none">
+            <motion.div
+              className="absolute top-0 left-0 w-full h-1/2 bg-primary-900"
+              initial={{ transform: "translateY(-100%)" }}
+              animate={{ transform: "translateY(0%)" }}
+              transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
+            />
+            <motion.div
+              className="absolute bottom-0 left-0 w-full h-1/2 bg-primary-900"
+              initial={{ transform: "translateY(100%)" }}
+              animate={{ transform: "translateY(0%)" }}
+              transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
+            />
+          </div>
+        )}
+
+        {/* Main Content */}
+        <div className="relative z-10 flex flex-col items-center">
+          <div className="relative mb-16 flex items-center justify-center">
+            {/* Professional Logo Reveal */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ 
+                duration: 1.2, 
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="relative w-24 h-24 md:w-32 md:h-32"
+            >
+               <img 
+                 src={logo} 
+                 alt="Logo" 
+                 className="w-full h-full object-contain rounded-full border-2 border-blue-500/20 p-2 bg-primary-800 shadow-2xl"
+               />
+               
+               {/* Orbital Ring Animation */}
+               <motion.div 
+                 className="absolute -inset-4 border border-blue-500/30 rounded-full"
+                 animate={{ rotate: 360 }}
+                 transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+               />
+               <motion.div 
+                 className="absolute -inset-8 border border-purple-500/10 rounded-full"
+                 animate={{ rotate: -360 }}
+                 transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+               />
+            </motion.div>
+            
+            {/* Animated Glow behind Logo */}
+            <motion.div
+              className="absolute inset-0 bg-blue-500/20 blur-[100px] rounded-full scale-150"
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.3, 0.6, 0.3],
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+            />
+          </div>
+
+          {/* Impactful Progress Display */}
+          <div className="flex flex-col items-center space-y-6">
+             <div className="relative w-80 h-[2px] bg-[var(--border-primary)] rounded-full overflow-hidden">
+                <motion.div
+                  className="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-[0_0_15px_rgba(59,130,246,0.5)]"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${progress}%` }}
+                  transition={{ ease: "linear" }}
+                />
+             </div>
+             
+             <div className="flex justify-between w-80 font-mono text-[10px] tracking-[0.4em] text-[var(--text-secondary)] uppercase">
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                >
+                  Syncing Systems
+                </motion.span>
+                <motion.span>
+                  {Math.round(progress)}%
+                </motion.span>
+             </div>
+          </div>
+        </div>
+
+        {/* Dynamic Tagline staggered entrance */}
+        <div className="absolute bottom-16 overflow-hidden">
+           <motion.p
+            className="text-[10px] font-mono tracking-[0.6em] text-[var(--text-secondary)] uppercase"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
+           >
+            Building the Future of Tech
+           </motion.p>
+        </div>
       </motion.div>
     </AnimatePresence>
   );

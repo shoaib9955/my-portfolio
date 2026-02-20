@@ -1,114 +1,153 @@
-import { FaGithub } from "react-icons/fa";
-import projects from "../data/projects";
+import { motion } from "framer-motion";
+import { FaGithub, FaExternalLinkAlt, FaDownload } from "react-icons/fa";
+import { projects } from "../data/projects";
 
 function Projects() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.95, y: 20 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
-    <section
-      id="projects"
-      className="px-6 py-16 bg-gradient-to-br from-purple-50 via-pink-50 to-white text-gray-800 relative overflow-hidden"
-      data-aos="fade-up"
-    >
-      {/* Subtle Floating Particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(15)].map((_, i) => (
-          <div
-            key={i}
-            className="w-1.5 h-1.5 bg-yellow-300 rounded-full absolute animate-pulse-slow"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animationDuration: `${3 + Math.random() * 3}s`,
-              opacity: Math.random() * 0.5 + 0.3,
-            }}
-          />
-        ))}
-      </div>
+    <section id="projects" className="bg-primary-900 py-32">
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mb-20 text-center lg:text-left"
+        >
+          <motion.h2 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl font-bold tracking-tighter text-[var(--text-primary)] mb-4"
+          >
+            Selected Works<span className="text-blue-500"></span>
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-[var(--text-secondary)] max-w-lg mx-auto lg:mx-0"
+          >
+            A showcase of digital products I've built, ranging from mobile 
+            applications to complex web platforms.
+          </motion.p>
+        </motion.div>
 
-      <div className="max-w-6xl mx-auto relative z-10 text-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-purple-700">
-          Projects
-        </h2>
-
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-2">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
           {projects.map((project, index) => (
-            <div
+            <motion.div
               key={index}
-              className="backdrop-blur-xl bg-white/30 p-6 rounded-2xl shadow-lg border border-white/20 hover:shadow-2xl hover:scale-105 transform transition duration-500 ease-in-out group relative overflow-hidden"
-              data-aos="zoom-in"
-              data-aos-delay={100 * (index + 1)}
+              variants={itemVariants}
+              whileHover={{ y: -10 }}
+              className="group relative flex flex-col p-8 lg:p-10 rounded-[2.5rem] bg-primary-800 border border-[var(--border-primary)] hover:border-blue-500/30 transition-all duration-500 shadow-2xl shadow-black/5"
             >
-              {/* Gradient Overlay on Hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-300 to-yellow-300 opacity-0 group-hover:opacity-20 rounded-2xl transition-opacity duration-500"></div>
+              <div className="flex-1 space-y-6">
+                <div className="space-y-2">
+                  <h3 className="text-2xl font-bold text-[var(--text-primary)] group-hover:text-blue-500 transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                </div>
+                
+                <p className="text-[var(--text-secondary)] leading-relaxed line-clamp-4 group-hover:text-[var(--text-primary)] transition-colors duration-300">
+                  {project.description}
+                </p>
 
-              <h3 className="text-xl font-semibold mb-3 text-purple-800 z-10 relative">
-                {project.title}
-              </h3>
-              <p className="mb-5 z-10 relative">{project.description}</p>
-
-              <div className="flex flex-col sm:flex-row gap-3 justify-center sm:justify-start z-10 relative">
-                {project.demo && (
+                <div className="flex flex-wrap gap-4 pt-4">
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--text-primary)] text-[var(--bg-primary-900)] text-sm font-bold rounded-full hover:opacity-90 transition-all duration-300 shadow-xl"
+                    >
+                      Live Demo <FaExternalLinkAlt size={12} />
+                    </a>
+                  )}
                   <a
-                    href={project.demo}
+                    href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-5 py-2 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl transition transform duration-300 font-semibold"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary-700 text-[var(--text-primary)] text-sm font-bold rounded-full border border-[var(--border-primary)] hover:bg-primary-800 transition-all duration-300"
                   >
-                    Live Demo
+                    GitHub <FaGithub size={14} />
                   </a>
-                )}
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-purple-700 font-medium hover:underline"
-                >
-                  <FaGithub size={18} /> GitHub →
-                </a>
-                {project.apk && (
-                  <a
-                    href={project.apk}
-                    download
-                    className="bg-gradient-to-r from-green-500 to-green-400 text-white px-5 py-2 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl transition transform duration-300"
-                  >
-                    Download APK
-                  </a>
-                )}
+                  {project.apk && (
+                    <a
+                      href={project.apk}
+                      download
+                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-500/10 text-green-500 text-sm font-bold rounded-full border border-green-500/20 hover:bg-green-500/20 transition-all duration-300"
+                    >
+                      Download APK <FaDownload size={14} />
+                    </a>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
 
-        {/* GitHub Profile Link */}
-        <div
-          className="mt-16 text-center"
-          data-aos="fade-up"
-          data-aos-delay="400"
+              {/* Decorative Index */}
+              <div className="absolute top-8 right-8 text-[var(--text-primary)] opacity-5 text-8xl font-bold select-none group-hover:opacity-10 transition-opacity duration-500 uppercase italic">
+                {String(index + 1).padStart(2, '0')}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* GitHub CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="mt-20 p-12 rounded-[3rem] bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-[var(--border-primary)] text-center space-y-6 shadow-2xl shadow-black/5"
         >
-          <p className="text-lg text-gray-700 mb-2">
-            Want to explore more of my work?
-          </p>
-          <a
+          <motion.p 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="text-xl text-[var(--text-secondary)]"
+          >
+            Looking for more? Explore my full repository of projects.
+          </motion.p>
+          <motion.a
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.7 }}
             href="https://github.com/shoaib9955"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-purple-700 font-semibold text-lg hover:underline"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-[var(--text-primary)] text-[var(--bg-primary-900)] font-bold rounded-full hover:opacity-90 transition-all duration-300 shadow-xl"
           >
-            <FaGithub size={20} /> Visit my GitHub profile →
-          </a>
-        </div>
+            Visit GitHub Profile <FaGithub size={20} />
+          </motion.a>
+        </motion.div>
       </div>
-
-      <style>
-        {`
-          @keyframes pulse-slow {
-            0%, 100% { transform: scale(0.5); opacity: 0.6; }
-            50% { transform: scale(1.2); opacity: 1; }
-          }
-          .animate-pulse-slow {
-            animation: pulse-slow infinite ease-in-out;
-          }
-        `}
-      </style>
     </section>
   );
 }

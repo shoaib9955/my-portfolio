@@ -1,128 +1,126 @@
 import myPhoto from "../assets/shoaib3.jpeg";
+import { motion } from "framer-motion";
 
 function Hero() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-900 to-purple-800 text-white px-6 py-12 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center bg-primary-900 px-6 pt-32 pb-20 overflow-hidden"
     >
-      {/* Background Floating Particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="w-2 h-2 bg-yellow-300 rounded-full absolute animate-pulse-slow"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animationDuration: `${3 + Math.random() * 4}s`,
-              opacity: Math.random() * 0.8 + 0.2,
-            }}
-          />
-        ))}
+      {/* Sophisticated Background Mesh Gradient */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }}></div>
       </div>
 
-      <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center relative z-10">
-        {/* Left: Text */}
-        <div
-          className="backdrop-blur-lg bg-white/10 p-10 rounded-2xl shadow-2xl border border-white/20"
-          data-aos="fade-right"
-          data-aos-duration="1000"
+      <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+        {/* Left: Content */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="space-y-8"
         >
-          <h2
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-2 tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 animate-gradient-x"
-            data-aos="fade-right"
-            data-aos-delay="100"
-          >
-            Hi, I'm <span className="text-red-300">MD Shoaib</span>
-          </h2>
+          <div className="space-y-4">
+            <motion.h2 
+              variants={itemVariants}
+              className="text-blue-500 font-mono text-sm tracking-[0.3em] uppercase mb-4"
+            >
+              Available for new projects
+            </motion.h2>
+            <motion.h1 
+              variants={itemVariants}
+              className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.9] text-[var(--text-primary)]"
+            >
+              Designing <br />
+              <span className="text-[var(--text-secondary)] italic">Digital</span> <br />
+              Experiences
+            </motion.h1>
+          </div>
 
-          <p
-            className="text-xl md:text-2xl font-bold mb-6 text-left text-purple-200 drop-shadow-md"
-            data-aos="fade-right"
-            data-aos-delay="200"
+          <motion.p
+            variants={itemVariants}
+            className="text-lg md:text-xl text-[var(--text-secondary)] max-w-lg leading-relaxed"
           >
-            Frontend Engineer
-          </p>
+            Hi, I'm <span className="text-[var(--text-primary)] font-semibold">MD Shoaib</span>. 
+            A <span className="text-gradient">Full Stack Engineer</span> with a deep passion for building 
+            high-performance web applications (currently more comfortable with frontends).
+          </motion.p>
 
-          <p
-            className="text-base md:text-lg leading-relaxed text-left text-white/90"
-            data-aos="fade-right"
-            data-aos-delay="300"
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-wrap gap-4 pt-4"
           >
-            I craft fast, accessible, and visually striking web interfaces using
-            React and Tailwind CSS. I focus on clean, responsive designs that
-            deliver seamless experiences across all devices, blending
-            performance, usability, and style to bring ideas to life.
-          </p>
+            <a
+              href="#projects"
+              className="px-8 py-4 bg-[var(--text-primary)] text-[var(--bg-primary-900)] font-bold rounded-full hover:opacity-90 transition-all duration-300 shadow-xl"
+            >
+              See My Work
+            </a>
+            <a
+              href="#contact"
+              className="px-8 py-4 bg-transparent text-[var(--text-primary)] font-bold rounded-full border border-[var(--border-primary)] hover:bg-[var(--bg-primary-800)] transition-all duration-300"
+            >
+              Contact Me
+            </a>
+          </motion.div>
+        </motion.div>
 
-          <a
-            href="#projects"
-            className="mt-6 inline-block bg-gradient-to-r from-yellow-400 to-yellow-300 text-purple-900 font-semibold px-6 py-3 rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transition transform duration-300"
-            data-aos="fade-up"
-            data-aos-delay="400"
-          >
-            View Projects
-          </a>
-        </div>
-
-        {/* Right: Image with Floating Accents */}
-        <div
-          className="relative flex justify-center"
-          data-aos="zoom-in"
-          data-aos-delay="300"
+        {/* Right: Image */}
+        <motion.div
+          className="relative flex justify-center lg:justify-end"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
         >
-          {/* Floating Glowing Particles around Image */}
-          {[...Array(8)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-3 h-3 bg-yellow-400 rounded-full opacity-70 animate-orbit"
-              style={{
-                top: `${50 + 15 * Math.sin((i / 8) * Math.PI * 2)}%`,
-                left: `${50 + 15 * Math.cos((i / 8) * Math.PI * 2)}%`,
-                animationDuration: `${4 + i}s`,
-                animationDelay: `${i * 0.3}s`,
-              }}
-            ></div>
-          ))}
+          <div className="relative group">
+            {/* Subtle Frame */}
+            <div className="absolute -inset-4 border border-[var(--border-primary)] rounded-[2.5rem] scale-95 group-hover:scale-100 transition-transform duration-700"></div>
+            
+            <div className="relative w-72 h-72 md:w-[28rem] md:h-[28rem] overflow-hidden rounded-[2rem] border border-[var(--border-primary)] shadow-2xl">
+              <img
+                src={myPhoto}
+                alt="MD Shoaib"
+                className="w-full h-full object-cover grayscale-[0.2] contrast-[1.1] hover:scale-110 hover:grayscale-0 transition-all duration-1000"
+              />
+            </div>
 
-          <img
-            src={myPhoto}
-            alt="MD Shoaib"
-            className="w-72 h-72 md:w-96 md:h-96 object-cover rounded-3xl shadow-2xl border-4 border-white/20 hover:scale-110 hover:shadow-3xl transition-transform duration-500 relative z-10"
-          />
-        </div>
+            {/* Floating Info Tag */}
+            <motion.div 
+              className="absolute -bottom-6 -left-6 bg-primary-800 border border-[var(--border-primary)] backdrop-blur-xl p-4 rounded-2xl shadow-2xl hidden md:block"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-sm font-medium text-white">Full Stack Intern @ Dehix</span>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
-
-      <style>
-        {`
-          @keyframes gradient-x {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-          }
-          .animate-gradient-x {
-            background-size: 200% 200%;
-            animation: gradient-x 5s ease infinite;
-          }
-
-          @keyframes pulse-slow {
-            0%, 100% { transform: scale(0.5); opacity: 0.6; }
-            50% { transform: scale(1.2); opacity: 1; }
-          }
-          .animate-pulse-slow {
-            animation: pulse-slow infinite ease-in-out;
-          }
-
-          @keyframes orbit {
-            0% { transform: rotate(0deg) translateX(80px) rotate(0deg); }
-            100% { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
-          }
-          .animate-orbit {
-            animation: orbit linear infinite;
-          }
-        `}
-      </style>
     </section>
   );
 }
