@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FiMenu, FiX, FiSun, FiMoon } from "react-icons/fi";
-import logo from "../assets/Shoaib-logo.png";
+import logo from "../assets/shoaib-logo.png";
 import { useTheme } from "../context/ThemeContext";
 
 function Header() {

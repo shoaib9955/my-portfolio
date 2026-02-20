@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../assets/Shoaib-logo.png";
+import logo from "../assets/shoaib-logo.png";
 
 function Loading({ onFinish }) {
   const [progress, setProgress] = useState(0);
