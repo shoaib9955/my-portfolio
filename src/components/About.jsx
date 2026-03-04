@@ -37,33 +37,35 @@ function About() {
           className="space-y-12"
         >
           <div className="space-y-4">
-            <motion.h3 
+            <motion.h3
               variants={itemVariants}
               className="text-sm font-mono text-blue-500 tracking-[0.3em] uppercase"
             >
               Background
             </motion.h3>
-            <motion.h2 
+            <motion.h2
               variants={itemVariants}
               className="text-4xl md:text-6xl font-bold tracking-tighter text-[var(--text-primary)] leading-[1.1]"
             >
-              I solve complex problems through <span className="text-[var(--text-secondary)] italic">elegant</span> software solutions.
+              I build software that solves problems in a simple and clean way.
             </motion.h2>
           </div>
 
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="grid grid-cols-1 md:grid-cols-2 gap-12"
           >
             <p className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
-              As a Passionate <span className="text-[var(--text-primary)] font-semibold">Full Stack Engineer</span>, 
-              I find joy in the architecture of complex systems and the visual 
-              finesse of the frontend. (currently more comfortable with frontends).
+              As a{" "}
+              <span className="text-[var(--text-primary)] font-semibold">
+                Full Stack Developer
+              </span>
+              , I enjoy building both the backend systems and frontend
+              interfaces. I'm more comfortable with frontend work.
             </p>
             <p className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed text-center md:text-left">
-              My journey is driven by a restless curiosity for new technologies 
-              and a commitment to writing clean, maintainable, and highly efficient code 
-              that makes an impact.
+              I'm always curious about new technologies and focused on writing
+              clean, efficient code that works well.
             </p>
           </motion.div>
 
@@ -72,12 +74,39 @@ function About() {
             className="pt-8 text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed"
           >
             <p>
-              When I'm not in front of a screen, you can find me at the 
-              <span className="text-[var(--text-primary)] italic"> gym 🏋️</span> or practicing 
-              <span className="text-[var(--text-primary)] italic"> MMA 🥋</span>. I approach 
-              both physical training and coding with the same mindset: 
-              continuous improvement and discipline.
+              When I'm not coding, I like to go to the
+              <span className="text-[var(--text-primary)] italic">
+                {" "}
+                gym 🏋️
+              </span>{" "}
+              and practice
+              <span className="text-[var(--text-primary)] italic"> MMA 🥋</span>
+              . Both activities help me stay disciplined and keep improving.
             </p>
+
+            <motion.a
+              href="/MERN.NEW_ (2) new.docx.pdf"
+              download="Shoaib_Resume.pdf"
+              variants={itemVariants}
+              className="inline-flex items-center gap-2 mt-8 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              Download Resume
+            </motion.a>
           </motion.div>
         </motion.div>
       </div>

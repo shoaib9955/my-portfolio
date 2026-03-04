@@ -10,9 +10,13 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   :root {
-    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-    
+    --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
     /* Light Mode Variables */
     --bg-primary-900: #ffffff;
     --bg-primary-800: #f8f9fa;
@@ -36,10 +40,15 @@
 
   body {
     @apply bg-primary-900 text-[var(--text-primary)] transition-colors duration-300;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply text-[var(--text-primary)];
   }
 }
@@ -48,7 +57,7 @@
   .section-container {
     @apply max-w-6xl mx-auto px-6 py-24;
   }
-  
+
   .glass-card {
     @apply backdrop-blur-xl bg-[var(--glass-bg)] border border-[var(--border-primary)] rounded-2xl;
   }

@@ -2,7 +2,7 @@ const experience = [
   {
     company: "Dehix",
     role: "Full Stack Developer Intern",
-    period: "September 12, 2025 – Present",
+    period: "September 2025 – Present",
     location: "Remote",
     responsibilities: [
       "Designing, developing, and maintaining both frontend and backend components",

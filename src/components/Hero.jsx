@@ -1,5 +1,6 @@
 import myPhoto from "../assets/shoaib3.jpeg";
 import { motion } from "framer-motion";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 function Hero() {
   const containerVariants = {
@@ -32,30 +33,36 @@ function Hero() {
       {/* Sophisticated Background Mesh Gradient */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[120px] animate-pulse"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div
+          className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-600/10 rounded-full blur-[120px] animate-pulse"
+          style={{ animationDelay: "2s" }}
+        ></div>
       </div>
 
       <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
         {/* Left: Content */}
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           className="space-y-8"
         >
           <div className="space-y-4">
-            <motion.h2 
+            <motion.h2
               variants={itemVariants}
               className="text-blue-500 font-mono text-sm tracking-[0.3em] uppercase mb-4"
             >
               Available for new projects
             </motion.h2>
-            <motion.h1 
+            <motion.h1
               variants={itemVariants}
               className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.9] text-[var(--text-primary)]"
             >
               Designing <br />
-              <span className="text-[var(--text-secondary)] italic">Digital</span> <br />
+              <span className="text-[var(--text-secondary)] italic">
+                Digital
+              </span>{" "}
+              <br />
               Experiences
             </motion.h1>
           </div>
@@ -64,9 +71,13 @@ function Hero() {
             variants={itemVariants}
             className="text-lg md:text-xl text-[var(--text-secondary)] max-w-lg leading-relaxed"
           >
-            Hi, I'm <span className="text-[var(--text-primary)] font-semibold">MD Shoaib</span>. 
-            A <span className="text-gradient">Full Stack Engineer</span> with a deep passion for building 
-            high-performance web applications (currently more comfortable with frontends).
+            Hi, I'm{" "}
+            <span className="text-[var(--text-primary)] font-semibold">
+              MD Shoaib
+            </span>
+            . A <span className="text-gradient">Full Stack Engineer</span> with
+            a deep passion for building high-performance web applications
+            (currently more comfortable with frontends).
           </motion.p>
 
           <motion.div
@@ -86,6 +97,31 @@ function Hero() {
               Contact Me
             </a>
           </motion.div>
+
+          <motion.div variants={itemVariants} className="flex gap-4 pt-6">
+            <a
+              href="https://github.com/shoaib9955"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full bg-[var(--bg-primary-800)] text-[var(--text-primary)] hover:bg-blue-600 hover:text-white transition-all duration-300 border border-[var(--border-primary)]"
+            >
+              <FaGithub className="w-5 h-5" />
+            </a>
+            <a
+              href="https://linkedin.com/in/mdshoaib"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full bg-[var(--bg-primary-800)] text-[var(--text-primary)] hover:bg-blue-600 hover:text-white transition-all duration-300 border border-[var(--border-primary)]"
+            >
+              <FaLinkedin className="w-5 h-5" />
+            </a>
+            <a
+              href="mailto:shoaib@example.com"
+              className="p-3 rounded-full bg-[var(--bg-primary-800)] text-[var(--text-primary)] hover:bg-blue-600 hover:text-white transition-all duration-300 border border-[var(--border-primary)]"
+            >
+              <FaEnvelope className="w-5 h-5" />
+            </a>
+          </motion.div>
         </motion.div>
 
         {/* Right: Image */}
@@ -98,7 +134,7 @@ function Hero() {
           <div className="relative group">
             {/* Subtle Frame */}
             <div className="absolute -inset-4 border border-[var(--border-primary)] rounded-[2.5rem] scale-95 group-hover:scale-100 transition-transform duration-700"></div>
-            
+
             <div className="relative w-72 h-72 md:w-[28rem] md:h-[28rem] overflow-hidden rounded-[2rem] border border-[var(--border-primary)] shadow-2xl">
               <img
                 src={myPhoto}
@@ -108,14 +144,16 @@ function Hero() {
             </div>
 
             {/* Floating Info Tag */}
-            <motion.div 
+            <motion.div
               className="absolute -bottom-6 -left-6 bg-primary-800 border border-[var(--border-primary)] backdrop-blur-xl p-4 rounded-2xl shadow-2xl hidden md:block"
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             >
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium text-white">Full Stack Intern @ Dehix</span>
+                <span className="text-sm font-medium text-white">
+                  Full Stack Intern @ Dehix
+                </span>
               </div>
             </motion.div>
           </div>

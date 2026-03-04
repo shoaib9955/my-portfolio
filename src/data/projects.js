@@ -34,7 +34,15 @@ const projects = [
     description:
       "A complete MERN stack gym management system with full admin authentication and user management. The app allows admins to manage members, track subscriptions, handle payments, and monitor gym activities efficiently. Built for gyms to streamline operations and enhance member experience.",
     github: " https://github.com/shoaib9955/Powerfitnessfrontend.git",
-    demo: "https://powerfitness13.onrender.com",
+    demo: "https://powerfitnessfrontend.vercel.app/",
+  },
+
+  {
+    title: "Forever Ecommerce",
+    description:
+      "A modern ecommerce web application built with React and Tailwind CSS, featuring user authentication, cart functionality, and responsive design.",
+    github: null,
+    demo: "https://forever45.vercel.app/",
   },
 ];
 

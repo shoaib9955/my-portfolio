@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaArrowUp } from "react-icons/fa";
+import VisitorCounter from "./VisitorCounter";
 
 function Footer() {
   const containerVariants = {
@@ -21,7 +22,7 @@ function Footer() {
 
   return (
     <footer className="bg-primary-900 border-t border-[var(--border-primary)] py-20 relative overflow-hidden">
-      <motion.div 
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -29,15 +30,28 @@ function Footer() {
         className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
       >
         <div className="space-y-6 text-center md:text-left">
-          <motion.h2 variants={itemVariants} className="text-2xl font-bold tracking-tighter text-[var(--text-primary)]">
+          <motion.h2
+            variants={itemVariants}
+            className="text-2xl font-bold tracking-tighter text-[var(--text-primary)]"
+          >
             MD SHOAIB<span className="text-blue-500"></span>
           </motion.h2>
-          <motion.p variants={itemVariants} className="text-[var(--text-secondary)] max-w-xs mx-auto md:mx-0">
-            Building digital products that combine aesthetic beauty with technical excellence.
+          <motion.p
+            variants={itemVariants}
+            className="text-[var(--text-secondary)] max-w-xs mx-auto md:mx-0"
+          >
+            Building digital products that combine aesthetic beauty with
+            technical excellence.
           </motion.p>
-          <motion.p variants={itemVariants} className="text-sm text-[var(--text-secondary)]">
-            © {new Date().getFullYear()} Md Shoaib. All rights reserved.
+          <motion.p
+            variants={itemVariants}
+            className="text-sm text-[var(--text-secondary)]"
+          >
+            {new Date().getFullYear()} Md Shoaib. All rights reserved.
           </motion.p>
+          <motion.div variants={itemVariants} className="pt-2">
+            <VisitorCounter displayOnly={true} />
+          </motion.div>
         </div>
 
         <div className="flex flex-col items-center md:items-end gap-8">

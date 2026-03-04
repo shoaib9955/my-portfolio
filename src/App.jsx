@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Analytics } from "@vercel/analytics/react";
 
 import Loading from "./components/Loading";
 import Header from "./components/Header";
@@ -11,6 +12,7 @@ import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import BackToTop from "./components/BackToTop";
 import { ThemeProvider } from "./context/ThemeContext";
 
 function App() {
@@ -26,6 +28,7 @@ function App() {
         <Loading onFinish={() => setLoading(false)} />
       ) : (
         <>
+          <Analytics />
           <Header />
           <Hero />
           <About />
@@ -34,6 +37,7 @@ function App() {
           <Projects />
           <Contact />
           <Footer />
+          <BackToTop />
         </>
       )}
     </ThemeProvider>

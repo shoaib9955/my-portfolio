@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { FiMenu, FiX, FiSun, FiMoon } from "react-icons/fi";
 import logo from "../assets/shoaib-logo.png";
 import { useTheme } from "../context/ThemeContext";
+import VisitorCounter from "./VisitorCounter";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,7 +43,7 @@ function Header() {
             className="h-8 w-8 object-contain rounded-full border border-[var(--border-primary)]"
           />
           <h1 className="text-xl font-bold tracking-tighter text-[var(--text-primary)]">
-           MD SHOAIB<span className="text-blue-500"></span>
+            MD SHOAIB<span className="text-blue-500"></span>
           </h1>
         </a>
 
@@ -58,7 +59,7 @@ function Header() {
               </a>
             </li>
           ))}
-          
+
           {/* Theme Toggle */}
           <li>
             <button
@@ -68,6 +69,21 @@ function Header() {
             >
               {theme === "dark" ? <FiSun /> : <FiMoon />}
             </button>
+          </li>
+
+          {/* Visitor Counter */}
+          <li>
+            <VisitorCounter />
+          </li>
+
+          <li>
+            <a
+              href="/MERN.NEW_ (2) new.docx.pdf"
+              download="Shoaib_Resume.pdf"
+              className="px-5 py-2.5 bg-blue-600 text-white text-sm font-bold rounded-full hover:bg-blue-700 transition-all duration-300"
+            >
+              Resume
+            </a>
           </li>
 
           <li>
@@ -110,6 +126,35 @@ function Header() {
               {link.name}
             </a>
           ))}
+          <a
+            href="/MERN.NEW_ (2) new.docx.pdf"
+            download="Shoaib_Resume.pdf"
+            className="w-full text-center px-5 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all duration-300"
+            onClick={() => setIsOpen(false)}
+          >
+            Resume
+          </a>
+
+          {/* Mobile Visitor Analytics */}
+          <div className="flex items-center justify-center gap-2 px-5 py-3 bg-primary-700 border border-[var(--border-primary)] rounded-xl">
+            <svg
+              className="w-4 h-4 text-green-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+              />
+            </svg>
+            <span className="text-sm font-medium text-[var(--text-secondary)]">
+              Analytics Active
+            </span>
+          </div>
+
           <a
             href="#contact"
             className="w-full text-center px-5 py-3 bg-[var(--text-primary)] text-[var(--bg-primary-900)] font-bold rounded-xl"
