@@ -1,25 +1,28 @@
-import myPhoto from "../assets/shoaib3.jpeg";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaArrowRight, FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
+
+import myPhoto from "../assets/shoaib3.jpeg";
 
 function Hero() {
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: {},
     visible: {
-      opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.12,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: {
+      opacity: 0,
+      y: 18,
+    },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.6,
         ease: "easeOut",
       },
     },
@@ -27,138 +30,208 @@ function Hero() {
 
   return (
     <section
-      id="hero"
-      className="relative min-h-screen flex items-center justify-center bg-primary-900 px-6 pt-32 pb-20 overflow-hidden"
+      id="home"
+      className="relative overflow-hidden border-b border-portfolio-border bg-portfolio-bg dark:border-portfolio-dark-border dark:bg-portfolio-dark-bg"
     >
-      {/* Sophisticated Background Mesh Gradient */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[120px] animate-pulse"></div>
-        <div
-          className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-600/10 rounded-full blur-[120px] animate-pulse"
-          style={{ animationDelay: "2s" }}
-        ></div>
-      </div>
+      {/* Subtle background grid */}
+      <div className="pointer-events-none absolute inset-0 subtle-grid opacity-60 dark:opacity-30" />
 
-      <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
-        {/* Left: Content */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="space-y-8"
-        >
-          <div className="space-y-4">
-            <motion.h2
-              variants={itemVariants}
-              className="text-blue-500 font-mono text-sm tracking-[0.3em] uppercase mb-4"
-            >
-              Available for new projects
-            </motion.h2>
+      <div className="section-container relative flex min-h-screen items-center pt-32 lg:pt-28">
+        <div className="grid w-full grid-cols-1 items-center gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
+          {/* Left Content */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="max-w-3xl"
+          >
+            {/* Developer Label */}
+            <motion.div variants={itemVariants} className="mb-7">
+              <span className="section-label">
+                Full-Stack JavaScript Developer
+              </span>
+            </motion.div>
+
+            {/* Main Heading */}
             <motion.h1
               variants={itemVariants}
-              className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.9] text-[var(--text-primary)]"
+              className="max-w-4xl text-5xl font-semibold leading-[1.02] tracking-[-0.045em] text-portfolio-text sm:text-6xl lg:text-7xl xl:text-[5.25rem] dark:text-portfolio-dark-text"
             >
-              Designing <br />
-              <span className="text-[var(--text-secondary)] italic">
-                Digital
-              </span>{" "}
-              <br />
-              Experiences
+              I build full-stack
+              <span className="block text-portfolio-primary dark:text-[#8fbea2]">
+                applications with AI.
+              </span>
             </motion.h1>
-          </div>
 
-          <motion.p
-            variants={itemVariants}
-            className="text-lg md:text-xl text-[var(--text-secondary)] max-w-lg leading-relaxed"
-          >
-            Hi, I'm{" "}
-            <span className="text-[var(--text-primary)] font-semibold">
-              MD Shoaib
-            </span>
-            . A <span className="text-gradient">Full Stack Engineer</span> with
-            a deep passion for building high-performance web applications
-            (currently more comfortable with frontends).
-          </motion.p>
-
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-wrap gap-4 pt-4"
-          >
-            <a
-              href="#projects"
-              className="px-8 py-4 bg-[var(--text-primary)] text-[var(--bg-primary-900)] font-bold rounded-full hover:opacity-90 transition-all duration-300 shadow-xl"
+            {/* Introduction */}
+            <motion.p
+              variants={itemVariants}
+              className="mt-7 max-w-2xl text-base leading-7 text-portfolio-text-muted sm:text-lg sm:leading-8 dark:text-portfolio-dark-text-muted"
             >
-              See My Work
-            </a>
-            <a
-              href="#contact"
-              className="px-8 py-4 bg-transparent text-[var(--text-primary)] font-bold rounded-full border border-[var(--border-primary)] hover:bg-[var(--bg-primary-800)] transition-all duration-300"
-            >
-              Contact Me
-            </a>
-          </motion.div>
+              Hi, I'm{" "}
+              <span className="font-semibold text-portfolio-text dark:text-portfolio-dark-text">
+                MD Shoaib
+              </span>
+              . I build modern, production-focused web applications using
+              JavaScript, React, Node.js, Express, and MongoDB, with experience
+              integrating AI APIs to add intelligent features to real-world
+              products.
+            </motion.p>
 
-          <motion.div variants={itemVariants} className="flex gap-4 pt-6">
-            <a
-              href="https://github.com/shoaib9955"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-[var(--bg-primary-800)] text-[var(--text-primary)] hover:bg-blue-600 hover:text-white transition-all duration-300 border border-[var(--border-primary)]"
-            >
-              <FaGithub className="w-5 h-5" />
-            </a>
-            <a
-              href="https://linkedin.com/in/mdshoaib"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-[var(--bg-primary-800)] text-[var(--text-primary)] hover:bg-blue-600 hover:text-white transition-all duration-300 border border-[var(--border-primary)]"
-            >
-              <FaLinkedin className="w-5 h-5" />
-            </a>
-            <a
-              href="mailto:shoaib@example.com"
-              className="p-3 rounded-full bg-[var(--bg-primary-800)] text-[var(--text-primary)] hover:bg-blue-600 hover:text-white transition-all duration-300 border border-[var(--border-primary)]"
-            >
-              <FaEnvelope className="w-5 h-5" />
-            </a>
-          </motion.div>
-        </motion.div>
-
-        {/* Right: Image */}
-        <motion.div
-          className="relative flex justify-center lg:justify-end"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
-        >
-          <div className="relative group">
-            {/* Subtle Frame */}
-            <div className="absolute -inset-4 border border-[var(--border-primary)] rounded-[2.5rem] scale-95 group-hover:scale-100 transition-transform duration-700"></div>
-
-            <div className="relative w-72 h-72 md:w-[28rem] md:h-[28rem] overflow-hidden rounded-[2rem] border border-[var(--border-primary)] shadow-2xl">
-              <img
-                src={myPhoto}
-                alt="MD Shoaib"
-                className="w-full h-full object-cover grayscale-[0.2] contrast-[1.1] hover:scale-110 hover:grayscale-0 transition-all duration-1000"
-              />
-            </div>
-
-            {/* Floating Info Tag */}
+            {/* Actions */}
             <motion.div
-              className="absolute -bottom-6 -left-6 bg-primary-800 border border-[var(--border-primary)] backdrop-blur-xl p-4 rounded-2xl shadow-2xl hidden md:block"
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              variants={itemVariants}
+              className="mt-9 flex flex-wrap items-center gap-3"
             >
-              <div className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium text-white">
-                  Full Stack Intern @ Dehix
-                </span>
+              <a href="#projects" className="primary-button">
+                View Projects
+                <FaArrowRight className="h-3.5 w-3.5" />
+              </a>
+
+              <a
+                href="/MERN.NEW_ (2) new.docx.pdf"
+                download="Shoaib_Resume.pdf"
+                className="secondary-button"
+              >
+                Download Resume
+              </a>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div
+              variants={itemVariants}
+              className="mt-9 flex items-center gap-5"
+            >
+              <span className="text-xs font-medium uppercase tracking-[0.16em] text-portfolio-text-subtle">
+                Connect
+              </span>
+
+              <div className="h-px w-8 bg-portfolio-border dark:bg-portfolio-dark-border" />
+
+              <a
+                href="https://github.com/shoaib9955"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="text-portfolio-text-muted transition-colors duration-200 hover:text-portfolio-primary dark:text-portfolio-dark-text-muted dark:hover:text-[#8fbea2]"
+              >
+                <FaGithub className="h-5 w-5" />
+              </a>
+
+              <a
+                href="https://linkedin.com/in/mdshoaib"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="text-portfolio-text-muted transition-colors duration-200 hover:text-portfolio-primary dark:text-portfolio-dark-text-muted dark:hover:text-[#8fbea2]"
+              >
+                <FaLinkedin className="h-5 w-5" />
+              </a>
+
+              <a
+                href="#contact"
+                aria-label="Contact"
+                className="text-portfolio-text-muted transition-colors duration-200 hover:text-portfolio-primary dark:text-portfolio-dark-text-muted dark:hover:text-[#8fbea2]"
+              >
+                <FaEnvelope className="h-5 w-5" />
+              </a>
+            </motion.div>
+
+            {/* Core Stack */}
+            <motion.div
+              variants={itemVariants}
+              className="mt-12 border-t border-portfolio-border pt-6 dark:border-portfolio-dark-border"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-portfolio-text-subtle">
+                Core stack
+              </p>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {[
+                  "JavaScript",
+                  "React",
+                  "Node.js",
+                  "Express",
+                  "MongoDB",
+                  "Tailwind CSS",
+                  "AI APIs",
+                ].map((technology) => (
+                  <span key={technology} className="tech-badge">
+                    {technology}
+                  </span>
+                ))}
               </div>
             </motion.div>
-          </div>
-        </motion.div>
+          </motion.div>
+
+          {/* Right — Profile */}
+          <motion.div
+            initial={{ opacity: 0, x: 25 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              duration: 0.7,
+              ease: "easeOut",
+              delay: 0.25,
+            }}
+            className="relative flex justify-center lg:justify-end"
+          >
+            <div className="relative">
+              {/* Decorative Frame */}
+              <div className="absolute -right-4 -top-4 h-full w-full rounded-2xl border border-portfolio-primary/20 dark:border-[#496956]/30" />
+
+              {/* Photo */}
+              <div className="relative h-[25rem] w-[20rem] overflow-hidden rounded-2xl border border-portfolio-border bg-portfolio-surface shadow-card sm:h-[30rem] sm:w-[24rem] dark:border-portfolio-dark-border dark:bg-portfolio-dark-surface">
+                <img
+                  src={myPhoto}
+                  alt="MD Shoaib"
+                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
+                />
+
+                {/* Photo Information */}
+                <div className="absolute bottom-0 left-0 right-0 bg-black/65 px-6 py-5">
+                  <div className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-[#72b58d]" />
+
+                    <span className="text-sm font-medium text-white">
+                      Full-Stack Developer
+                    </span>
+                  </div>
+
+                  <p className="mt-1 text-xs text-white/70">
+                    Building web applications & AI-powered features
+                  </p>
+                </div>
+              </div>
+
+              {/* Experience Card */}
+              <div className="absolute -bottom-7 -left-7 hidden w-56 rounded-xl border border-portfolio-border bg-portfolio-surface p-4 shadow-card sm:block dark:border-portfolio-dark-border dark:bg-portfolio-dark-surface">
+                <p className="text-xs font-medium uppercase tracking-[0.14em] text-portfolio-text-subtle">
+                  Experience
+                </p>
+
+                <p className="mt-2 text-sm font-semibold text-portfolio-text dark:text-portfolio-dark-text">
+                  Full-Stack Developer Intern
+                </p>
+
+                <p className="mt-1 text-xs text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
+                  Dehix
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
+
+      {/* Scroll Indicator */}
+      <a
+        href="#about"
+        aria-label="Scroll to About section"
+        className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 items-center gap-3 text-xs font-medium uppercase tracking-[0.16em] text-portfolio-text-subtle transition-colors hover:text-portfolio-primary lg:flex"
+      >
+        <span>Scroll to explore</span>
+
+        <span className="h-8 w-px bg-portfolio-border dark:bg-portfolio-dark-border" />
+      </a>
     </section>
   );
 }

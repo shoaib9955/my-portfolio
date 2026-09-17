@@ -1,9 +1,5 @@
-import { useState, useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { Analytics } from "@vercel/analytics/react";
 
-import Loading from "./components/Loading";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -13,33 +9,27 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import BackToTop from "./components/BackToTop";
+
 import { ThemeProvider } from "./context/ThemeContext";
 
 function App() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-  }, []);
-
   return (
     <ThemeProvider>
-      {loading ? (
-        <Loading onFinish={() => setLoading(false)} />
-      ) : (
-        <>
-          <Analytics />
-          <Header />
-          <Hero />
-          <About />
-          <Skills />
-          <Experience />
-          <Projects />
-          <Contact />
-          <Footer />
-          <BackToTop />
-        </>
-      )}
+      <Analytics />
+
+      <Header />
+
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Experience />
+        <Projects />
+        <Contact />
+      </main>
+
+      <Footer />
+      <BackToTop />
     </ThemeProvider>
   );
 }
