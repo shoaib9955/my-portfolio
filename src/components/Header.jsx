@@ -1,210 +1,134 @@
-import { useEffect, useState } from "react";
-import { FiMenu, FiMoon, FiSun, FiX } from "react-icons/fi";
-
-import logo from "../assets/shoaib-logo.png";
+import { useState } from "react";
+import { FaArrowRight, FaBars, FaMoon, FaSun, FaTimes } from "react-icons/fa";
 import { useTheme } from "../context/ThemeContext";
 
 function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
   const { theme, toggleTheme } = useTheme();
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Experience", href: "#experience" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
+  const navItems = [
+    { label: "About", href: "#about" },
+    { label: "Experience", href: "#experience" },
+    { label: "Projects", href: "#projects" },
+    { label: "Skills", href: "#skills" },
+    { label: "Contact", href: "#contact" },
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-
-    const handleEscape = (event) => {
-      if (event.key === "Escape") {
-        setIsOpen(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("keydown", handleEscape);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("keydown", handleEscape);
-    };
-  }, []);
-
   const handleNavClick = () => {
-    setIsOpen(false);
+    setMenuOpen(false);
   };
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-portfolio-border/80 bg-portfolio-bg/95 py-3 backdrop-blur-xl dark:border-portfolio-dark-border/80 dark:bg-portfolio-dark-bg/95"
-          : "bg-transparent py-5"
-      }`}
-    >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
-        {/* Logo */}
+    <header className="fixed left-0 right-0 top-0 z-50 border-b border-portfolio-border/80 bg-portfolio-bg/95 backdrop-blur-md transition-colors duration-300 dark:border-portfolio-dark-border/80 dark:bg-portfolio-dark-bg/95">
+      <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
         <a
           href="#home"
           onClick={handleNavClick}
           className="group flex items-center gap-3"
-          aria-label="MD Shoaib - Home"
+          aria-label="MD Shoaib Home"
         >
-          <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-lg border border-portfolio-border bg-portfolio-surface dark:border-portfolio-dark-border dark:bg-portfolio-dark-surface">
-            <img
-              src={logo}
-              alt="MD Shoaib logo"
-              className="h-full w-full object-contain"
-            />
-          </div>
+          <span className="flex h-9 w-9 items-center justify-center border border-portfolio-text bg-portfolio-text text-xs font-bold text-white transition-colors duration-300 group-hover:border-portfolio-primary group-hover:bg-portfolio-primary dark:border-portfolio-dark-text dark:bg-portfolio-dark-text dark:text-portfolio-dark-bg dark:group-hover:border-[#df8062] dark:group-hover:bg-[#df8062]">
+            MS
+          </span>
 
           <div className="hidden sm:block">
-            <span className="block text-sm font-bold tracking-[0.08em] text-portfolio-text dark:text-portfolio-dark-text">
-              MD SHOAIB
-            </span>
+            <p className="text-sm font-semibold tracking-[-0.02em] text-portfolio-text dark:text-portfolio-dark-text">
+              MD Shoaib
+            </p>
 
-            <span className="block text-[10px] font-medium uppercase tracking-[0.14em] text-portfolio-text-subtle">
-              Full-Stack Developer · AI
-            </span>
+            <p className="text-[10px] uppercase tracking-[0.16em] text-portfolio-text-subtle dark:text-portfolio-dark-text-muted">
+              Full-Stack Developer
+            </p>
           </div>
         </a>
 
-        {/* Desktop Navigation */}
-        <div className="hidden items-center gap-8 md:flex">
-          <ul className="flex items-center gap-7">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <a
-                  href={link.href}
-                  className="text-sm font-medium text-portfolio-text-muted transition-colors duration-200 hover:text-portfolio-primary dark:text-portfolio-dark-text-muted dark:hover:text-[#8fbea2]"
-                >
-                  {link.name}
-                </a>
-              </li>
-            ))}
-          </ul>
+        <nav className="hidden items-center gap-7 lg:flex">
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="group relative text-xs font-semibold uppercase tracking-[0.13em] text-portfolio-text-muted transition-colors duration-200 hover:text-portfolio-text dark:text-portfolio-dark-text-muted dark:hover:text-portfolio-dark-text"
+            >
+              {item.label}
 
-          <div className="h-5 w-px bg-portfolio-border dark:bg-portfolio-dark-border" />
+              <span className="absolute -bottom-2 left-0 h-px w-0 bg-portfolio-primary transition-all duration-200 group-hover:w-full dark:bg-[#df8062]" />
+            </a>
+          ))}
+        </nav>
 
-          {/* Theme Toggle */}
+        <div className="flex items-center gap-2">
           <button
             type="button"
             onClick={toggleTheme}
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-portfolio-border bg-portfolio-surface text-portfolio-text-muted transition-all duration-200 hover:border-portfolio-primary hover:text-portfolio-primary dark:border-portfolio-dark-border dark:bg-portfolio-dark-surface dark:text-portfolio-dark-text-muted dark:hover:border-[#496956] dark:hover:text-[#8fbea2]"
             aria-label={
-              theme === "dark"
-                ? "Switch to light theme"
-                : "Switch to dark theme"
+              theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
             }
-            title={
-              theme === "dark"
-                ? "Switch to light theme"
-                : "Switch to dark theme"
-            }
+            className="flex h-10 w-10 items-center justify-center border border-portfolio-border text-portfolio-text-muted transition-all duration-200 hover:border-portfolio-primary hover:text-portfolio-primary dark:border-portfolio-dark-border dark:text-portfolio-dark-text-muted dark:hover:border-[#df8062] dark:hover:text-[#df8062]"
           >
             {theme === "dark" ? (
-              <FiSun className="h-4 w-4" />
+              <FaSun className="h-3.5 w-3.5" />
             ) : (
-              <FiMoon className="h-4 w-4" />
+              <FaMoon className="h-3.5 w-3.5" />
             )}
           </button>
 
-          {/* Resume */}
           <a
-            href="/Shoaib_Full_Stack_Developer_Resume.pdf"
-            download="Shoaib_Full_Stack_Developer_Resume.pdf"
-            className="primary-button px-4 py-2.5"
+            href="#contact"
+            className="hidden items-center gap-2 border border-portfolio-primary bg-portfolio-primary px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.1em] text-white transition-all duration-200 hover:border-portfolio-primary-hover hover:bg-portfolio-primary-hover sm:flex"
           >
-            Resume
+            Let's Talk
+            <FaArrowRight className="h-3 w-3" />
           </a>
-        </div>
-
-        {/* Mobile Controls */}
-        <div className="flex items-center gap-2 md:hidden">
-          <button
-            type="button"
-            onClick={toggleTheme}
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-portfolio-border bg-portfolio-surface text-portfolio-text-muted transition-colors duration-200 hover:border-portfolio-primary hover:text-portfolio-primary dark:border-portfolio-dark-border dark:bg-portfolio-dark-surface dark:text-portfolio-dark-text-muted"
-            aria-label={
-              theme === "dark"
-                ? "Switch to light theme"
-                : "Switch to dark theme"
-            }
-          >
-            {theme === "dark" ? (
-              <FiSun className="h-4 w-4" />
-            ) : (
-              <FiMoon className="h-4 w-4" />
-            )}
-          </button>
 
           <button
             type="button"
-            onClick={() => setIsOpen((previous) => !previous)}
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-portfolio-border bg-portfolio-surface text-portfolio-text dark:border-portfolio-dark-border dark:bg-portfolio-dark-surface dark:text-portfolio-dark-text"
-            aria-label={
-              isOpen ? "Close navigation menu" : "Open navigation menu"
-            }
-            aria-expanded={isOpen}
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            className="flex h-10 w-10 items-center justify-center border border-portfolio-border text-portfolio-text transition-colors duration-200 hover:border-portfolio-primary hover:text-portfolio-primary lg:hidden dark:border-portfolio-dark-border dark:text-portfolio-dark-text dark:hover:border-[#df8062] dark:hover:text-[#df8062]"
           >
-            {isOpen ? (
-              <FiX className="h-5 w-5" />
+            {menuOpen ? (
+              <FaTimes className="h-4 w-4" />
             ) : (
-              <FiMenu className="h-5 w-5" />
+              <FaBars className="h-4 w-4" />
             )}
           </button>
         </div>
-      </nav>
+      </div>
 
-      {/* Mobile Navigation */}
-      {isOpen && (
-        <div className="absolute inset-x-0 top-full border-b border-portfolio-border bg-portfolio-bg px-5 py-6 shadow-lg dark:border-portfolio-dark-border dark:bg-portfolio-dark-bg md:hidden">
-          <div className="mx-auto flex max-w-7xl flex-col">
-            <nav aria-label="Mobile navigation">
-              <ul className="divide-y divide-portfolio-border dark:divide-portfolio-dark-border">
-                {navLinks.map((link) => (
-                  <li key={link.name}>
-                    <a
-                      href={link.href}
-                      onClick={handleNavClick}
-                      className="flex items-center justify-between py-4 text-base font-medium text-portfolio-text-muted transition-colors duration-200 hover:text-portfolio-primary dark:text-portfolio-dark-text-muted dark:hover:text-[#8fbea2]"
-                    >
-                      <span>{link.name}</span>
-                      <span className="text-portfolio-text-subtle">→</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+      <div
+        className={`overflow-hidden border-t border-portfolio-border bg-portfolio-bg transition-all duration-300 dark:border-portfolio-dark-border dark:bg-portfolio-dark-bg lg:hidden ${
+          menuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <nav className="mx-auto max-w-7xl px-5 py-5 sm:px-6">
+          <div className="flex flex-col">
+            {navItems.map((item, index) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={handleNavClick}
+                className={`flex items-center justify-between border-b border-portfolio-border py-4 text-sm font-semibold uppercase tracking-[0.12em] text-portfolio-text transition-colors hover:text-portfolio-primary dark:border-portfolio-dark-border dark:text-portfolio-dark-text dark:hover:text-[#df8062] ${
+                  index === 0 ? "border-t" : ""
+                }`}
+              >
+                <span>{item.label}</span>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="/Shoaib_Full_Stack_Developer_Resume.pdf"
-                download="Shoaib_Full_Stack_Developer_Resume.pdf"
-                onClick={handleNavClick}
-                className="primary-button w-full"
-              >
-                Download Resume
+                <FaArrowRight className="h-3 w-3" />
               </a>
-              <a
-                href="#contact"
-                onClick={handleNavClick}
-                className="secondary-button w-full"
-              >
-                Let's Talk
-              </a>
-            </div>
+            ))}
           </div>
-        </div>
-      )}
+
+          <a
+            href="#contact"
+            onClick={handleNavClick}
+            className="primary-button mt-5 w-full"
+          >
+            Let's Talk
+            <FaArrowRight className="h-3.5 w-3.5" />
+          </a>
+        </nav>
+      </div>
     </header>
   );
 }

@@ -22,182 +22,289 @@ function Projects() {
   return (
     <section
       id="projects"
-      className="border-b border-portfolio-border bg-portfolio-bg dark:border-portfolio-dark-border dark:bg-portfolio-dark-bg"
+      className="border-b border-portfolio-border bg-portfolio-bg transition-colors duration-300 dark:border-portfolio-dark-border dark:bg-portfolio-dark-bg"
     >
       <div className="section-container">
-        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="max-w-3xl"
+          transition={{ duration: 0.65 }}
+          className="max-w-5xl"
         >
-          <span className="section-label">Selected Projects</span>
+          <span className="section-label">Selected Work</span>
 
-          <h2 className="section-title">
-            Applications I've built from frontend to backend.
+          <h2 className="mt-6 max-w-5xl text-5xl font-semibold uppercase leading-[0.92] tracking-[-0.055em] text-portfolio-text sm:text-6xl lg:text-8xl dark:text-portfolio-dark-text">
+            Things I've
+            <span className="block text-portfolio-primary dark:text-[#df8062]">
+              built.
+            </span>
           </h2>
 
           <p className="section-description">
-            A selection of full-stack and frontend projects that demonstrate my
-            experience with application architecture, APIs, databases,
-            authentication, deployment, and AI integration.
+            Full-stack applications built with modern JavaScript technologies,
+            real backend architecture, APIs, databases, authentication, and
+            AI-powered features.
           </p>
         </motion.div>
 
-        {/* Featured Projects */}
-        <div className="mt-14 space-y-6">
-          {featuredProjects.map((project, index) => (
-            <motion.article
-              key={project.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.08,
-              }}
-              viewport={{ once: true, amount: 0.15 }}
-              className="portfolio-card overflow-hidden"
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px]">
-                {/* Main Content */}
-                <div className="p-7 sm:p-9 lg:p-10">
-                  <div className="flex items-start justify-between gap-5">
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-portfolio-primary dark:text-[#8fbea2]">
-                        Featured Project
-                      </p>
+        <div className="mt-20 space-y-20">
+          {featuredProjects.map((project, index) => {
+            const isTaskFlow = project.title === "TaskFlow AI";
 
-                      <h3 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-portfolio-text sm:text-3xl dark:text-portfolio-dark-text">
-                        {project.title}
-                      </h3>
-                    </div>
+            return (
+              <motion.article
+                key={project.title}
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{
+                  duration: 0.7,
+                  ease: "easeOut",
+                }}
+                className="group"
+              >
+                <div className="mb-5 flex items-center justify-between border-t border-portfolio-border pt-4 dark:border-portfolio-dark-border">
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-portfolio-text-subtle dark:text-portfolio-dark-text-muted">
+                    Featured Project
+                  </span>
 
-                    <span className="hidden text-sm font-semibold text-portfolio-text-subtle sm:block">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </div>
+                  <span className="font-mono text-sm text-portfolio-primary dark:text-[#df8062]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
 
-                  <p className="mt-5 max-w-3xl text-base leading-7 text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
-                    {project.description}
-                  </p>
+                <div className="overflow-hidden border border-portfolio-border bg-portfolio-surface transition-colors duration-300 dark:border-portfolio-dark-border dark:bg-portfolio-dark-surface">
+                  <div
+                    className={`grid grid-cols-1 ${
+                      index % 2 === 0
+                        ? "lg:grid-cols-[1.25fr_0.75fr]"
+                        : "lg:grid-cols-[0.75fr_1.25fr]"
+                    }`}
+                  >
+                    <div
+                      className={`relative min-h-[360px] overflow-hidden bg-[#111110] p-7 sm:min-h-[450px] sm:p-10 ${
+                        index % 2 !== 0 ? "lg:order-2" : ""
+                      }`}
+                    >
+                      <div className="pointer-events-none absolute inset-0 opacity-40">
+                        <div
+                          className="absolute inset-0"
+                          style={{
+                            backgroundImage:
+                              "linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px)",
+                            backgroundSize: "42px 42px",
+                          }}
+                        />
+                      </div>
 
-                  {/* Technologies */}
-                  {project.technologies?.length > 0 && (
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      {project.technologies.map((technology) => (
-                        <span key={technology} className="tech-badge">
-                          {technology}
+                      <div className="relative z-10 flex items-center justify-between">
+                        <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">
+                          {isTaskFlow
+                            ? "AI Team Operations Platform"
+                            : "Gym Management System"}
                         </span>
-                      ))}
+
+                        <span className="font-mono text-xs text-white/35">
+                          2026
+                        </span>
+                      </div>
+
+                      <div className="relative z-10 flex h-[300px] items-center justify-center sm:h-[370px]">
+                        <div className="w-full max-w-xl">
+                          <div className="border border-white/15 bg-[#181817] shadow-2xl">
+                            <div className="flex h-9 items-center border-b border-white/10 px-3">
+                              <div className="flex gap-1.5">
+                                <span className="h-2 w-2 rounded-full bg-white/20" />
+                                <span className="h-2 w-2 rounded-full bg-white/15" />
+                                <span className="h-2 w-2 rounded-full bg-white/10" />
+                              </div>
+
+                              <div className="mx-auto h-4 w-32 border border-white/10 bg-white/[0.03]" />
+                            </div>
+
+                            <div className="grid min-h-[220px] grid-cols-[65px_1fr] sm:min-h-[270px]">
+                              <div className="border-r border-white/10 bg-[#111110] p-3">
+                                <div className="mb-6 h-5 w-5 bg-[#df8062]" />
+
+                                <div className="space-y-3">
+                                  <span className="block h-1.5 w-7 bg-white/20" />
+                                  <span className="block h-1.5 w-9 bg-white/10" />
+                                  <span className="block h-1.5 w-6 bg-white/10" />
+                                  <span className="block h-1.5 w-8 bg-white/10" />
+                                </div>
+                              </div>
+
+                              <div className="p-5 sm:p-7">
+                                <div className="flex items-center justify-between">
+                                  <div>
+                                    <span className="block h-2 w-20 bg-white/20" />
+                                    <span className="mt-2 block h-1.5 w-32 bg-white/10" />
+                                  </div>
+
+                                  <span className="h-7 w-16 bg-[#df8062]/80" />
+                                </div>
+
+                                <div className="mt-7 grid grid-cols-2 gap-3">
+                                  <div className="h-20 border border-white/10 bg-white/[0.025]" />
+                                  <div className="h-20 border border-white/10 bg-white/[0.025]" />
+                                  <div className="h-24 border border-white/10 bg-white/[0.025]" />
+                                  <div className="h-24 border border-white/10 bg-white/[0.025]" />
+                                </div>
+
+                                <div className="mt-4 h-2 w-2/3 bg-white/10" />
+                                <div className="mt-2 h-1.5 w-1/2 bg-white/5" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="relative z-10">
+                        <p className="text-xs uppercase tracking-[0.18em] text-white/45">
+                          {project.technologies?.slice(0, 4).join(" · ")}
+                        </p>
+                      </div>
                     </div>
-                  )}
 
-                  {/* Links */}
-                  <div className="mt-8 flex flex-wrap gap-3">
-                    {project.demo && (
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="primary-button"
-                      >
-                        Live Demo
-                        <FaExternalLinkAlt className="h-3 w-3" />
-                      </a>
-                    )}
+                    <div
+                      className={`flex flex-col justify-between p-7 sm:p-10 lg:p-12 ${
+                        index % 2 !== 0 ? "lg:order-1" : ""
+                      }`}
+                    >
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-portfolio-primary dark:text-[#df8062]">
+                          {isTaskFlow
+                            ? "AI-powered SaaS"
+                            : "Full-stack application"}
+                        </p>
 
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="secondary-button"
-                      >
-                        View GitHub
-                        <FaGithub className="h-4 w-4" />
-                      </a>
-                    )}
+                        <h3 className="mt-5 text-4xl font-semibold uppercase leading-[0.95] tracking-[-0.045em] text-portfolio-text sm:text-5xl dark:text-portfolio-dark-text">
+                          {project.title}
+                        </h3>
 
-                    {project.apk && (
-                      <a
-                        href={project.apk}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="secondary-button"
-                      >
-                        Download APK
-                        <FaAndroid className="h-4 w-4" />
-                      </a>
-                    )}
+                        <p className="mt-7 text-base leading-7 text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
+                          {project.description}
+                        </p>
+
+                        <div className="mt-8 border-y border-portfolio-border py-6 dark:border-portfolio-dark-border">
+                          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-portfolio-text-subtle dark:text-portfolio-dark-text-muted">
+                            Key capabilities
+                          </p>
+
+                          <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+                            {isTaskFlow ? (
+                              <>
+                                <span className="text-sm text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
+                                  → MERN SaaS architecture
+                                </span>
+
+                                <span className="text-sm text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
+                                  → JWT authentication
+                                </span>
+
+                                <span className="text-sm text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
+                                  → Role-based access
+                                </span>
+
+                                <span className="text-sm text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
+                                  → Gemini AI integration
+                                </span>
+
+                                <span className="text-sm text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
+                                  → Cloudinary uploads
+                                </span>
+
+                                <span className="text-sm text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
+                                  → Search & pagination
+                                </span>
+                              </>
+                            ) : (
+                              <>
+                                <span className="text-sm text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
+                                  → Gym management
+                                </span>
+
+                                <span className="text-sm text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
+                                  → Admin dashboard
+                                </span>
+
+                                <span className="text-sm text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
+                                  → Member management
+                                </span>
+
+                                <span className="text-sm text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
+                                  → Subscription management
+                                </span>
+
+                                <span className="text-sm text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
+                                  → REST APIs
+                                </span>
+
+                                <span className="text-sm text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
+                                  → MongoDB
+                                </span>
+                              </>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="mt-7 flex flex-wrap gap-2">
+                          {project.technologies?.map((technology) => (
+                            <span key={technology} className="tech-badge">
+                              {technology}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="mt-9 flex flex-wrap gap-3">
+                        {project.demo && (
+                          <a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="primary-button"
+                          >
+                            Live Project
+                            <FaExternalLinkAlt className="h-3 w-3" />
+                          </a>
+                        )}
+
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="secondary-button"
+                          >
+                            GitHub
+                            <FaGithub className="h-4 w-4" />
+                          </a>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
-
-                {/* Project Highlights */}
-                <div className="border-t border-portfolio-border bg-portfolio-surface-soft p-7 lg:border-l lg:border-t-0 lg:p-8 dark:border-portfolio-dark-border dark:bg-portfolio-dark-surface-soft">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-portfolio-text-subtle">
-                    What it demonstrates
-                  </p>
-
-                  <div className="mt-5 space-y-4">
-                    {project.title === "TaskFlow AI" && (
-                      <>
-                        <p className="text-sm leading-6 text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
-                          Full-stack SaaS architecture
-                        </p>
-
-                        <p className="text-sm leading-6 text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
-                          Authentication & RBAC
-                        </p>
-
-                        <p className="text-sm leading-6 text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
-                          AI-powered workflows
-                        </p>
-
-                        <p className="text-sm leading-6 text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
-                          Cloud file uploads
-                        </p>
-                      </>
-                    )}
-
-                    {project.title === "PowerFitness Gym Management" && (
-                      <>
-                        <p className="text-sm leading-6 text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
-                          Full-stack gym management
-                        </p>
-
-                        <p className="text-sm leading-6 text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
-                          Admin authentication
-                        </p>
-
-                        <p className="text-sm leading-6 text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
-                          Member & subscription management
-                        </p>
-
-                        <p className="text-sm leading-6 text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
-                          REST API integration
-                        </p>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </motion.article>
-          ))}
+              </motion.article>
+            );
+          })}
         </div>
 
-        {/* Other Projects */}
         {otherProjects.length > 0 && (
-          <div className="mt-16">
-            <div className="mb-7 flex items-end justify-between gap-6">
+          <div className="mt-24">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-10 flex flex-col justify-between gap-5 border-t border-portfolio-border pt-5 sm:flex-row sm:items-end dark:border-portfolio-dark-border"
+            >
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-portfolio-primary dark:text-[#8fbea2]">
-                  More Projects
-                </p>
+                <span className="section-label">More Work</span>
 
-                <h3 className="mt-2 text-2xl font-semibold tracking-[-0.025em] text-portfolio-text dark:text-portfolio-dark-text">
-                  Other work
+                <h3 className="mt-5 text-3xl font-semibold uppercase tracking-[-0.04em] text-portfolio-text sm:text-4xl dark:text-portfolio-dark-text">
+                  Other projects
                 </h3>
               </div>
 
@@ -205,89 +312,90 @@ function Projects() {
                 href="https://github.com/shoaib9955"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden items-center gap-2 text-sm font-semibold text-portfolio-primary transition-colors hover:text-portfolio-primary-hover sm:flex dark:text-[#8fbea2]"
+                className="secondary-button w-fit"
               >
-                View GitHub
+                All GitHub Projects
                 <FaArrowRight className="h-3.5 w-3.5" />
               </a>
-            </div>
+            </motion.div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-px overflow-hidden border border-portfolio-border bg-portfolio-border sm:grid-cols-2 lg:grid-cols-3 dark:border-portfolio-dark-border dark:bg-portfolio-dark-border">
               {otherProjects.map((project, index) => (
                 <motion.article
                   key={project.title}
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.45,
-                    delay: index * 0.06,
-                  }}
                   viewport={{ once: true, amount: 0.15 }}
-                  className="portfolio-card flex flex-col p-6"
+                  transition={{
+                    duration: 0.5,
+                    delay: index * 0.05,
+                  }}
+                  className="group flex min-h-[310px] flex-col bg-portfolio-surface p-6 transition-colors duration-300 hover:bg-portfolio-surface-soft dark:bg-portfolio-dark-surface dark:hover:bg-portfolio-dark-surface-soft"
                 >
-                  <div className="flex-1">
-                    <div className="flex items-start justify-between gap-4">
-                      <h4 className="text-lg font-semibold tracking-[-0.02em] text-portfolio-text dark:text-portfolio-dark-text">
-                        {project.title}
-                      </h4>
+                  <div className="flex items-start justify-between">
+                    <span className="font-mono text-xs text-portfolio-primary dark:text-[#df8062]">
+                      {String(index + 3).padStart(2, "0")}
+                    </span>
 
-                      <span className="text-xs font-semibold text-portfolio-text-subtle">
-                        {String(index + 3).padStart(2, "0")}
-                      </span>
-                    </div>
-
-                    <p className="mt-3 line-clamp-3 text-sm leading-6 text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
-                      {project.description}
-                    </p>
-
-                    {project.technologies?.length > 0 && (
-                      <div className="mt-5 flex flex-wrap gap-1.5">
-                        {project.technologies.slice(0, 4).map((technology) => (
-                          <span key={technology} className="tech-badge">
-                            {technology}
-                          </span>
-                        ))}
-                      </div>
+                    {project.apk && (
+                      <FaAndroid className="h-4 w-4 text-portfolio-text-subtle dark:text-portfolio-dark-text-muted" />
                     )}
                   </div>
 
-                  {/* Project Links */}
-                  <div className="mt-6 flex flex-wrap gap-2 border-t border-portfolio-border pt-5 dark:border-portfolio-dark-border">
-                    {project.demo && (
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="secondary-button px-3.5 py-2 text-xs"
-                      >
-                        Live
-                        <FaExternalLinkAlt className="h-3 w-3" />
-                      </a>
-                    )}
+                  <div className="mt-auto">
+                    <h4 className="text-2xl font-semibold uppercase leading-none tracking-[-0.035em] text-portfolio-text dark:text-portfolio-dark-text">
+                      {project.title}
+                    </h4>
 
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="secondary-button px-3.5 py-2 text-xs"
-                      >
-                        GitHub
-                        <FaGithub className="h-3.5 w-3.5" />
-                      </a>
-                    )}
+                    <p className="mt-4 line-clamp-3 text-sm leading-6 text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
+                      {project.description}
+                    </p>
 
-                    {project.apk && (
-                      <a
-                        href={project.apk}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="secondary-button px-3.5 py-2 text-xs"
-                      >
-                        APK
-                        <FaAndroid className="h-3.5 w-3.5" />
-                      </a>
-                    )}
+                    <div className="mt-5 flex flex-wrap gap-1.5">
+                      {project.technologies?.slice(0, 3).map((technology) => (
+                        <span key={technology} className="tech-badge">
+                          {technology}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="mt-6 flex gap-4 border-t border-portfolio-border pt-5 dark:border-portfolio-dark-border">
+                      {project.demo && (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-portfolio-text transition-colors hover:text-portfolio-primary dark:text-portfolio-dark-text dark:hover:text-[#df8062]"
+                        >
+                          Live
+                          <FaExternalLinkAlt className="h-3 w-3" />
+                        </a>
+                      )}
+
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-portfolio-text transition-colors hover:text-portfolio-primary dark:text-portfolio-dark-text dark:hover:text-[#df8062]"
+                        >
+                          GitHub
+                          <FaGithub className="h-3.5 w-3.5" />
+                        </a>
+                      )}
+
+                      {project.apk && (
+                        <a
+                          href={project.apk}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-portfolio-text transition-colors hover:text-portfolio-primary dark:text-portfolio-dark-text dark:hover:text-[#df8062]"
+                        >
+                          APK
+                          <FaAndroid className="h-3.5 w-3.5" />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </motion.article>
               ))}
@@ -295,22 +403,21 @@ function Projects() {
           </div>
         )}
 
-        {/* GitHub CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.2 }}
-          className="mt-16 border-t border-portfolio-border pt-8 dark:border-portfolio-dark-border"
+          className="mt-20 border-t border-portfolio-border pt-8 dark:border-portfolio-dark-border"
         >
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
             <div>
-              <p className="text-base font-semibold text-portfolio-text dark:text-portfolio-dark-text">
-                Want to see more of my work?
+              <p className="text-xl font-semibold tracking-[-0.02em] text-portfolio-text dark:text-portfolio-dark-text">
+                More code. More experiments. More ideas.
               </p>
 
-              <p className="mt-1 text-sm text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
-                Explore my repositories and additional projects on GitHub.
+              <p className="mt-2 text-sm text-portfolio-text-muted dark:text-portfolio-dark-text-muted">
+                Explore the rest of my work on GitHub.
               </p>
             </div>
 
@@ -318,9 +425,9 @@ function Projects() {
               href="https://github.com/shoaib9955"
               target="_blank"
               rel="noopener noreferrer"
-              className="primary-button shrink-0"
+              className="primary-button w-fit"
             >
-              Visit GitHub Profile
+              Visit GitHub
               <FaGithub className="h-4 w-4" />
             </a>
           </div>
