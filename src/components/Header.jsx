@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { FaArrowRight, FaBars, FaMoon, FaSun, FaTimes } from "react-icons/fa";
+import {
+  FaArrowRight,
+  FaBars,
+  FaDownload,
+  FaMoon,
+  FaSun,
+  FaTimes,
+} from "react-icons/fa";
 import { useTheme } from "../context/ThemeContext";
 
 function Header() {
@@ -73,6 +80,25 @@ function Header() {
           </button>
 
           <a
+            href="/Shoaib_Full_Stack_Developer_Resume.pdf"
+            download="Shoaib_Full_Stack_Developer_Resume.pdf"
+            className="hidden items-center gap-2 border border-portfolio-border-strong bg-transparent px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.1em] text-portfolio-text transition-all duration-200 hover:border-portfolio-primary hover:bg-portfolio-primary-light hover:text-portfolio-primary dark:border-portfolio-dark-border dark:text-portfolio-dark-text sm:flex"
+          >
+            <FaDownload className="h-3 w-3" />
+            Resume
+          </a>
+
+          <a
+            href="/Shoaib_Full_Stack_Developer_Resume.pdf"
+            download="Shoaib_Full_Stack_Developer_Resume.pdf"
+            aria-label="Download Resume"
+            title="Download Resume"
+            className="flex h-10 w-10 items-center justify-center border border-portfolio-border text-portfolio-text-muted transition-all duration-200 hover:border-portfolio-primary hover:text-portfolio-primary sm:hidden dark:border-portfolio-dark-border dark:text-portfolio-dark-text-muted dark:hover:border-[#df8062] dark:hover:text-[#df8062]"
+          >
+            <FaDownload className="h-3.5 w-3.5" />
+          </a>
+
+          <a
             href="#contact"
             className="hidden items-center gap-2 border border-portfolio-primary bg-portfolio-primary px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.1em] text-white transition-all duration-200 hover:border-portfolio-primary-hover hover:bg-portfolio-primary-hover sm:flex"
           >
@@ -126,6 +152,16 @@ function Header() {
           >
             Let's Talk
             <FaArrowRight className="h-3.5 w-3.5" />
+          </a>
+
+          <a
+            href="/Shoaib_Full_Stack_Developer_Resume.pdf"
+            download="Shoaib_Full_Stack_Developer_Resume.pdf"
+            onClick={handleNavClick}
+            className="secondary-button mt-3 w-full sm:hidden"
+          >
+            <FaDownload className="h-3.5 w-3.5" />
+            Download Resume
           </a>
         </nav>
       </div>

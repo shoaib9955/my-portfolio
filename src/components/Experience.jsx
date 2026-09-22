@@ -1,5 +1,15 @@
 import { motion } from "framer-motion";
-import { FaBriefcase, FaCalendarAlt, FaDownload } from "react-icons/fa";
+import {
+  FaBriefcase,
+  FaCalendarAlt,
+  FaCertificate,
+  FaDownload,
+  FaFileAlt,
+} from "react-icons/fa";
+
+import experience from "../data/experience";
+
+const internship = experience[0];
 
 function Experience() {
   return (
@@ -115,6 +125,28 @@ function Experience() {
                       </span>
                     ))}
                   </div>
+                </div>
+
+                <div className="mt-8 flex flex-wrap gap-3 border-t border-portfolio-border pt-7 dark:border-portfolio-dark-border">
+                  <a
+                    href={internship.certificate}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="primary-button"
+                  >
+                    <FaCertificate className="h-3.5 w-3.5" />
+                    View Certificate
+                  </a>
+
+                  <a
+                    href={internship.completionLetter}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="secondary-button"
+                  >
+                    <FaFileAlt className="h-3.5 w-3.5" />
+                    View Completion Letter
+                  </a>
                 </div>
               </div>
             </div>

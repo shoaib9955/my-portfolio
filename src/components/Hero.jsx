@@ -152,7 +152,7 @@ function Hero() {
                 <img
                   src={myPhoto}
                   alt="MD Shoaib"
-                  className="h-full w-full object-cover grayscale-[12%] transition-transform duration-700 hover:scale-[1.025]"
+                  className="mobile-photo-animation h-full w-full object-cover grayscale-[12%] transition-transform duration-700 hover:scale-[1.025]"
                 />
               </div>
 
